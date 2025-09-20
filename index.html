@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Museo It Akean</title>
   <link rel="short cut icon" href="provinceofaklan.jpeg" type="image/x-icon">
-  <script src="https://unpkg.com/html5-qrcode"></script>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <scrip src="https://unpkg.com/html5-qrcode"></script>
+  <scrip type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #fff; }
     header {
@@ -22,6 +22,22 @@
 
     h2 { margin: 20px 0; }
 
+    .back-arrow {
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 70px;
+      left: 15px;
+      background: #ddd;
+      padding: 6px 12px;
+      border-radius: 50%;
+      user-select: none;
+      transition: background 0.3s;
+    }
+    .back-arrow:hover {
+      background: #bbb;
+    }
+
     .btn {
       display: block;
       width: 200px;
@@ -34,6 +50,17 @@
       font-size: 16px;
     }
     .btn:focus, .btn.active { border: 2px solid #3b73e0; }
+    .step {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .step img {
+      max-width: 100px;
+      display: block;
+      margin: 10px auto;
+      border-radius: 10px;
+    }
 
     .gallery { display: flex; flex-direction: column; gap: 20px; align-items: center; }
     .gallery-item img {
@@ -46,7 +73,6 @@
     audio { margin-top: 15px; }
   </style>
 </head>
-<body>
 
   <!-- HEADER -->
   <header>
@@ -61,12 +87,13 @@
 
   <!-- DASHBOARD -->
   <div id="dashboard" class="page active">
-    <h2>View Options</h2>
+    <h2>Dashboard</h2>
     <button class="btn" onclick="showPage('gallery')">Museum Content</button>
     <button class="btn" onclick="showPage('about')">About</button>
   </div>
 
   <!-- ABOUT -->
+  
   <div id="about" class="page">
     <h2>About</h2>
     <p>An AR museum uses augmented reality (AR) technology to create an
@@ -74,19 +101,68 @@
        world, allowing museums to offer dynamic and engaging displays that
        blend real and virtual elements.</p>
        <p> This approach allows for unique experiences that traditional exhibits cannot provide, using smartphones or tablets to enhance collections and provide interactive</p>
-    <button class="btn" onclick="showPage('dashboard')">Museom Contents</button>
+       <h3 style="text-align:center;">How to use the application</h3>
+
+    <!-- Step 1 -->
+    <div class="step">
+      <p>1. Go to Museum Content and press.</p>
+      <img src="image1.jpg" alt="image1 Example">
+    </div>
+    <!-- Step 2 -->
+    <div class="step">
+      <p>2. Select the gallery you want to choose and press.</p>
+      <img src="image2.jpg" alt="image2 Example">
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step">
+      <p>3. Choose any content you prefer and press.</p>
+      <img src="painting.jpg" alt="Painting Example">
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step">
+      <p>4. Press the QR Camera Scanner icon.</p>
+      <img src="scanner.png" alt="QR Scanner Example">
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step">
+      <p>5. Visitors may scan the QR code located at the Aklan Museum.</p>
+      <img src="qr1.png" alt="QR Example">
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step">
+      <p>6. Wait until the link appears, then click it.</p>
+      <img src="qr2.png" alt="QR Example">
+    </div>
+
+    <!-- Step 7 -->
+    <div class="step">
+      <p>7. Wait until the link appears, then click it.</p>
+      <img src="qr3.png" alt="QR Example">
+    </div>
   </div>
 
+
+    <button class="btn" onclick="showPage('dashboard')">Museum Content</button>
+  </div>
+
+
   <!-- GALLERY MENU -->
-  <div id="gallery" class="page">
+ 
+ <div id="gallery" class="page">
+  <div class="back-arrow" onclick="showSection('dashboard')">←</div>
     <h2>Museum Contents</h2>
     <button class="btn" onclick="showPage('paintings')">Painting Gallery</button>
-    <button class="btn" onclick="showPage('artifacts')">Artifacts Gallery</button>
-    <button class="btn" onclick="showPage('dashboard')">Back</button>
+    <button class="btn" onclick="showPage('artifacts')">Artifacts Gallery</button>   
   </div>
+
 
   <!-- PAINTINGS GALLERY -->
   <div id="paintings" class="page">
+    <div class="back-arrow" onclick="showSection('dashboard')">←</div>
     <h2>Painting Exhibit</h2>
     <div class="gallery">
       <div class="gallery-item" onclick="showDetail('painting1')">
@@ -98,37 +174,38 @@
         <p>Festival Dance</p>
       </div>
     </div>
-    <button class="btn" onclick="showPage('gallery')">Back</button>
   </div>
 
   <!-- ARTIFACTS GALLERY -->
   <div id="artifacts" class="page">
+    <div class="back-arrow" onclick="showSection('dashboard')">←</div>
     <h2>Artifacts Exhibit</h2>
     <div class="gallery">
       <div class="gallery-item" onclick="showDetail('artifact1')">
         <img src="artifact1.jpg" alt="Artifact 1">
-        <p>Rearing Horse</p>
+        <p>JAR</p>
       </div>
       <div class="gallery-item" onclick="showDetail('artifact2')">
         <img src="artifact2.jpg" alt="Artifact 2">
-        <p>Ancient Vase</p>
+        <p>TALIBONG</p>
       </div>
     </div>
-    <button class="btn" onclick="showPage('gallery')">Back</button>
   </div>
+
 
   <!-- DETAIL PAGE -->
   <div id="detail" class="page">
+    <div class="back-arrow" onclick="showSection('dashboard')">←</div>
     <h2 id="detailTitle"></h2>
     <img id="detailImage" src="" alt="Exhibit" style="width:250px;height:250px;object-fit:cover;">
     <h3 id="detailName"></h3>
     <div id="reader"></div>
     <button class="btn" onclick="startScanner()">📷 QR Camera Scanner</button>
-    <button class="btn" onclick="goBackToGallery()">Back</button>
   </div>
 
   <!-- VIEWER -->
   <div id="viewer" class="page">
+    <div class="back-arrow" onclick="showSection('dashboard')">←</div>
     <h2>3D Model Viewer</h2>
     <model-viewer id="modelView" src="" ar auto-rotate camera-controls style="width:100%; height:300px;"></model-viewer>
     <p id="artifactDesc"></p>
@@ -225,6 +302,5 @@
       else showPage("artifacts");
     }
   </script>
-
 </body>
 </html>

@@ -6,7 +6,6 @@
   <title>Museo It Akean</title>
   <link rel="shortcut icon" href="provinceofaklan.jpeg" type="image/x-icon">
   <script src="https://unpkg.com/html5-qrcode"></script>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #fff; }
 
@@ -212,7 +211,6 @@
 
     function startScanner() {
       if (html5QrCodeInstance) return; // already running
-
       html5QrCodeInstance = new Html5Qrcode("reader");
       Html5Qrcode.getCameras().then(devices => {
         if (devices && devices.length) {
@@ -239,7 +237,7 @@
       stopScanner();
       document.getElementById("scan-result").innerHTML =
         `<a href="${decodedText}" target="_blank">${decodedText}</a>`;
-      window.open(decodedText, "_blank"); // auto-click
+      window.open(decodedText, "_blank"); // auto-open link
     }
   </script>
 </body>

@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Museo It Akean</title>
-  <link rel="short cut icon" href="provinceofaklan.jpeg" type="image/x-icon">
+  <link rel="shortcut icon" href="provinceofaklan.jpeg" type="image/x-icon">
   <script src="https://unpkg.com/html5-qrcode"></script>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background: #fff; }
+
+    /* HEADER */
     header {
       background: #ddd; padding: 10px; display: flex;
       align-items: center; gap: 10px;
@@ -17,25 +18,12 @@
     header h1 { margin: 0; font-size: 18px; }
     header p { margin: 0; font-size: 12px; }
 
-    .page { display: none; text-align: center; padding: 20px; }
+    /* PAGE SYSTEM */
+    .page { display: none; height: 100%; position: relative; }
     .active { display: block; }
 
-    h2 { margin: 20px 0; }
-    .back-arrow {
-      font-size: 24px;
-      cursor: pointer;
-      position: absolute;
-      top: 70px;
-      left: 15px;
-      background: #ddd;
-      padding: 6px 12px;
-      border-radius: 50%;
-      user-select: none;
-      transition: background 0.3s;
-    }
-    .back-arrow:hover {
-      background: #bbb;
-    }
+    /* BUTTONS */
+    button { padding: 8px 12px; border-radius: 8px; cursor: pointer; }
     .btn {
       display: block;
       width: 200px;
@@ -48,47 +36,88 @@
       font-size: 16px;
     }
     .btn:focus, .btn.active { border: 2px solid #3b73e0; }
-.gallery {
-  display: flex;
-  flex-direction: column;   /* Stack items vertically */
-  gap: 20px;
-  max-height: 400px;        /* Set the scrollable area height */
-  overflow-y: scroll;       /* Enable vertical scrolling */
-  -ms-overflow-style: none; /* IE/Edge scrollbar hide */
-  scrollbar-width: none;    /* Firefox scrollbar hide */
-  scroll-behavior: smooth;
-  align-items: center;
-}
 
-.gallery::-webkit-scrollbar {
-  display: none;            /* Chrome, Safari, Opera scrollbar hide */
-}
+    /* BACK ARROW */
+    .back-arrow {
+      font-size: 24px;
+      cursor: pointer;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #ddd;
+      padding: 6px 12px;
+      border-radius: 50%;
+      user-select: none;
+      transition: background 0.3s;
+    }
+    .back-arrow:hover { background: #bbb; }
 
-.gallery-item img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 2px solid #ccc;
-}
+    /* GALLERY */
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-height: 400px;
+      overflow-y: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      align-items: center;
+    }
+    .gallery::-webkit-scrollbar { display: none; }
+    .gallery-item img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid #ccc;
+      cursor: pointer;
+    }
+    .gallery-item p { margin-top: 8px; font-size: 15px; }
 
-.gallery-item p {
-  margin-top: 8px;
-  font-size: 15px;
-}
-
+    /* ABOUT PAGE */
+    #about {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      padding: 0;
+      text-align: left;
+    }
+    .about-title {
+      flex: 0 0 auto;
+      background: #fff;
+      padding: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 2px solid #ccc;
+      text-align: center;
+    }
+    .about-content {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 15px;
+    }
+    .about-content img {
+      max-width: 100%;
+      display: block;
+      margin: 10px auto;
+      border-radius: 6px;
+    }
 
     #reader { width: 100%; max-width: 350px; margin: 20px auto; }
-    audio { margin-top: 15px; }
+    #scan-result { text-align: center; margin-top: 15px; font-weight: bold; }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <header>
-    <img src="../Downloads/provinceofaklan.jpeg" alt="Museo Logo">
+    <img src="provinceofaklan.jpeg" alt="Museo Logo">
     <div>
-      <h1>Museu It Akean</h1>
+      <h1>Museo It Akean</h1>
       <p>Province of Aklan</p>
     </div>
   </header>
@@ -101,51 +130,23 @@
   </div>
 
   <!-- ABOUT -->
-  <div id="about" class="page"> 
-    <h2>About</h2>
-    <p>
-      An AR museum uses augmented reality (AR) technology to create an
-      interactive experience by overlaying digital content onto the physical
-      world, allowing museums to offer dynamic and engaging displays that
-      blend real and virtual elements.
-    </p>
-    <p>
-      This approach allows for unique experiences that traditional exhibits cannot provide,
-      using smartphones or tablets to enhance collections and provide interactive.
-    </p>
+  <div id="about" class="page">
+    <h2 class="about-title">About</h2>
+    <div class="about-content">
+      <p>An AR museum uses augmented reality (AR) technology to create an interactive experience by overlaying digital content onto the physical world, allowing museums to offer dynamic and engaging displays that blend real and virtual elements.</p>
+      <p>This approach allows for unique experiences that traditional exhibits cannot provide, using smartphones or tablets to enhance collections and provide interactive.</p>
 
-    <h2 style="text-align:center;">How to use the application</h2>
-    
-    <div class="step">
-      <p>1. Go to Museum Content and press.</p>
-      <img src="image1.jpg" alt="Step 1 Example">
-    </div>
-    <div class="step">
-      <p>2. Select the gallery you want to choose and press.</p>
-      <img src="image2.jpg" alt="Step 2 Example">
-    </div>
-    <div class="step">
-      <p>3. Choose any content you prefer and press.</p>
-      <img src="painting.jpg" alt="Painting Example">
-    </div>
-    <div class="step">
-      <p>4. Press the QR Camera Scanner icon.</p>
-      <img src="scanner.png" alt="QR Scanner Example">
-    </div>
-    <div class="step">
-      <p>5. Visitors may scan the QR code located at the Aklan Museum.</p>
-      <img src="qr1.png" alt="QR Example">
-    </div>
-    <div class="step">
-      <p>6. Wait until the link appears, then click it.</p>
-      <img src="qr2.png" alt="QR Example">
-    </div>
-    <div class="step">
-      <p>7. Enjoy the artifact details, description, and audio.</p>
-      <img src="qr3.png" alt="Final Example">
-    </div>
+      <h2 style="text-align:center;">How to use the application</h2>
+      <div class="step"><p>1. Go to Museum Content and press.</p><img src="image1.jpg" alt="Step 1"></div>
+      <div class="step"><p>2. Select the gallery you want to choose and press.</p><img src="image2.jpg" alt="Step 2"></div>
+      <div class="step"><p>3. Choose any content you prefer and press.</p><img src="painting.jpg" alt="Painting"></div>
+      <div class="step"><p>4. Press the QR Camera Scanner icon.</p><img src="scanner.png" alt="QR Scanner"></div>
+      <div class="step"><p>5. Visitors may scan the QR code located at the Aklan Museum.</p><img src="qr1.png" alt="QR 1"></div>
+      <div class="step"><p>6. Wait until the link appears, then click it.</p><img src="qr2.png" alt="QR 2"></div>
+      <div class="step"><p>7. Enjoy the artifact details, description, and audio.</p><img src="qr3.png" alt="QR 3"></div>
 
-    <button class="btn" onclick="showPage('gallery')">Museum Contents</button>
+      <button class="btn" onclick="showPage('gallery')">Museum Contents</button>
+    </div>
   </div>
 
   <!-- GALLERY MENU -->
@@ -161,13 +162,11 @@
     <div class="back-arrow" onclick="showPage('gallery')">←</div>
     <h2>Painting Exhibit</h2>
     <div class="gallery">
-      <div class="gallery-item" onclick="showDetail('painting1')">
-        <img src="painting1.jpg" alt="Painting 1">
-        <p>Sunset Over Aklan</p>
+      <div class="gallery-item" onclick="goToScanner('painting1')">
+        <img src="painting1.jpg" alt="Painting 1"><p>Sunset Over Aklan</p>
       </div>
-      <div class="gallery-item" onclick="showDetail('painting2')">
-        <img src="painting2.jpg" alt="Painting 2">
-        <p>Festival Dance</p>
+      <div class="gallery-item" onclick="goToScanner('painting2')">
+        <img src="painting2.jpg" alt="Painting 2"><p>Festival Dance</p>
       </div>
     </div>
   </div>
@@ -177,127 +176,69 @@
     <div class="back-arrow" onclick="showPage('gallery')">←</div>
     <h2>Artifacts Exhibit</h2>
     <div class="gallery">
-      <div class="gallery-item" onclick="showDetail('artifact1')">
-        <img src="artifact1.jpg" alt="Artifact 1">
-        <p>Rearing Horse</p>
+      <div class="gallery-item" onclick="goToScanner('artifact1')">
+        <img src="artifact1.jpg" alt="Artifact 1"><p>Rearing Horse</p>
       </div>
-      <div class="gallery-item" onclick="showDetail('artifact2')">
-        <img src="artifact2.jpg" alt="Artifact 2">
-        <p>Ancient Vase</p>
+      <div class="gallery-item" onclick="goToScanner('artifact2')">
+        <img src="artifact2.jpg" alt="Artifact 2"><p>Ancient Vase</p>
       </div>
     </div>
   </div>
 
-  <!-- DETAIL PAGE -->
-  <div id="detail" class="page">
-    <div class="back-arrow" onclick="goBackToGallery()">←</div>
-    <h2 id="detailTitle"></h2>
-    <img id="detailImage" src="" alt="Exhibit" style="width:250px;height:250px;object-fit:cover;">
-    <h3 id="detailName"></h3>
+  <!-- QR SCANNER PAGE -->
+  <div id="scanner" class="page">
+    <div class="back-arrow" onclick="showPage('gallery')">←</div>
+    <h2>QR Camera Scanner</h2>
     <div id="reader"></div>
-    <button class="btn" onclick="startScanner()">📷 QR Camera Scanner</button>
-  </div>
-
-  <!-- VIEWER -->
-  <div id="viewer" class="page">
-    <div class="back-arrow" onclick="goBackToGallery()">←</div>
-    <h2>3D Model Viewer</h2>
-    <model-viewer id="modelView" src="" ar auto-rotate camera-controls style="width:100%; height:300px;"></model-viewer>
-    <p id="artifactDesc"></p>
-    <audio id="artifactAudio" controls>
-      <source src="" type="audio/mpeg">
-    </audio>
-    <button class="btn" onclick="showPage('dashboard')">Back to Dashboard</button>
+    <div id="scan-result">Scan a QR code...</div>
   </div>
 
   <script>
     let currentItem = null;
-    let html5QrCodeInstance;
+    let html5QrCodeInstance = null;
 
     function showPage(id) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+      if (id === 'scanner') startScanner();
+      else stopScanner();
     }
 
-    function showDetail(itemId) {
+    function goToScanner(itemId) {
       currentItem = itemId;
-      const titles = {
-        painting1: "Painting Detail",
-        painting2: "Painting Detail",
-        artifact1: "Artifact Detail",
-        artifact2: "Artifact Detail"
-      };
-      const names = {
-        painting1: "Sunset Over Aklan",
-        painting2: "Festival Dance",
-        artifact1: "Rearing Horse",
-        artifact2: "Ancient Vase"
-      };
-      const images = {
-        painting1: "painting1.jpg",
-        painting2: "painting2.jpg",
-        artifact1: "artifact1.jpg",
-        artifact2: "artifact2.jpg"
-      };
-      document.getElementById("detailTitle").textContent = titles[itemId];
-      document.getElementById("detailName").textContent = names[itemId];
-      document.getElementById("detailImage").src = images[itemId];
-      showPage("detail");
+      showPage('scanner');
     }
 
     function startScanner() {
-      if (html5QrCodeInstance) {
-        html5QrCodeInstance.stop().then(() => { document.getElementById("reader").innerHTML = ""; });
-      }
+      if (html5QrCodeInstance) return; // already running
       html5QrCodeInstance = new Html5Qrcode("reader");
       Html5Qrcode.getCameras().then(devices => {
         if (devices && devices.length) {
           let backCam = devices.find(d => d.label.toLowerCase().includes("back"));
           let camId = backCam ? backCam.id : devices[0].id;
-          html5QrCodeInstance.start(camId, { fps: 10, qrbox: 200 }, onScanSuccess);
+          html5QrCodeInstance.start(camId, { fps: 10, qrbox: 200 }, qrSuccess);
         }
+      }).catch(err => {
+        document.getElementById("scan-result").innerText = "Camera error: " + err;
       });
     }
 
-    function onScanSuccess(qrMessage) {
-      html5QrCodeInstance.stop().then(() => {
-        document.getElementById("reader").innerHTML = "";
-        loadViewer(currentItem);
-      });
-    }
-
-    function loadViewer(itemId) {
-      showPage("viewer");
-      const modelView = document.getElementById("modelView");
-      const desc = document.getElementById("artifactDesc");
-      const audio = document.getElementById("artifactAudio");
-
-      if (itemId === "artifact1") {
-        modelView.src = "artifact1.glb"; 
-        desc.textContent = "This is the Rearing Horse artifact.";
-        audio.querySelector("source").src = "artifact1.mp3";
-      } else if (itemId === "artifact2") {
-        modelView.src = "artifact2.glb"; 
-        desc.textContent = "This is the Ancient Vase artifact.";
-        audio.querySelector("source").src = "artifact2.mp3";
-      } else if (itemId === "painting1") {
-        modelView.src = "painting1.glb"; 
-        desc.textContent = "This is the Sunset Over Aklan painting.";
-        audio.querySelector("source").src = "painting1.mp3";
-      } else if (itemId === "painting2") {
-        modelView.src = "painting2.glb"; 
-        desc.textContent = "This is the Festival Dance painting.";
-        audio.querySelector("source").src = "painting2.mp3";
+    function stopScanner() {
+      if (html5QrCodeInstance) {
+        html5QrCodeInstance.stop().then(() => {
+          html5QrCodeInstance.clear();
+          html5QrCodeInstance = null;
+          document.getElementById("reader").innerHTML = "";
+        }).catch(err => console.error(err));
       }
-      audio.load();
     }
 
-    function goBackToGallery() {
-      if (!currentItem) return showPage('dashboard');
-      if (currentItem.includes("painting")) showPage("paintings");
-      else showPage("artifacts");
+    function qrSuccess(decodedText) {
+      stopScanner();
+      document.getElementById("scan-result").innerHTML =
+        `<a href="${decodedText}" target="_blank">${decodedText}</a>`;
+      window.open(decodedText, "_blank"); // auto-open link
     }
   </script>
-
 </body>
 </html>

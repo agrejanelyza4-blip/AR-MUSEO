@@ -20,7 +20,11 @@
     header p { margin: 0; font-size: 12px; }
 
     /* PAGE SYSTEM */
-    .page { display: none; height: 100%; }
+    .page {
+      display: none;
+      height: 100%;
+      position: relative; /* for back-arrow */
+    }
     .active { display: block; }
 
     /* BUTTONS */
@@ -43,7 +47,7 @@
       font-size: 24px;
       cursor: pointer;
       position: absolute;
-      top: 70px;
+      top: 15px;
       left: 15px;
       background: #ddd;
       padding: 6px 12px;
@@ -79,7 +83,7 @@
     #about {
       display: flex;
       flex-direction: column;
-      height: 100vh;        /* Full screen */
+      height: 100vh;
       padding: 0;
       text-align: left;
     }
@@ -100,6 +104,12 @@
       overflow-y: auto;
       padding: 15px;
     }
+    .about-content img {
+      max-width: 100%;
+      display: block;
+      margin: 10px auto;
+      border-radius: 6px;
+    }
 
     #reader { width: 100%; max-width: 350px; margin: 20px auto; }
     audio { margin-top: 15px; }
@@ -109,7 +119,7 @@
 
   <!-- HEADER -->
   <header>
-    <img src="../Downloads/provinceofaklan.jpeg" alt="Museo Logo">
+    <img src="provinceofaklan.jpeg" alt="Museo Logo">
     <div>
       <h1>Museo It Akean</h1>
       <p>Province of Aklan</p>
@@ -244,8 +254,17 @@
 
     function startScanner() {
       if (html5QrCodeInstance) {
-        html5QrCodeInstance.stop().then(() => { document.getElementById("reader").innerHTML = ""; });
+        html5QrCodeInstance.stop().then(() => {
+          html5QrCodeInstance.clear();
+          document.getElementById("reader").innerHTML = "";
+          initScanner();
+        });
+      } else {
+        initScanner();
       }
+    }
+
+    function initScanner() {
       html5QrCodeInstance = new Html5Qrcode("reader");
       Html5Qrcode.getCameras().then(devices => {
         if (devices && devices.length) {
@@ -286,6 +305,8 @@
         desc.textContent = "This is the Festival Dance painting.";
         audio.querySelector("source").src = "painting2.mp3";
       }
+      audio.pause();
+      audio.currentTime = 0;
       audio.load();
     }
 

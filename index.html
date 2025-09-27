@@ -21,6 +21,7 @@
     left: 0;
     width: 100%;
     z-index: 20;
+    justify-content: center; 
   }
   header img { height: 40px; }
   header h1 { margin: 0; font-size: 18px; }
@@ -103,7 +104,7 @@
 
 <header>
   <img src="provinceofaklan.jpeg" alt="Museo Logo">
-  <div>
+  <div class="center-container">
     <h1>Museo It Akean</h1>
     <p>Province of Aklan</p>
   </div>
@@ -159,7 +160,7 @@
     <h2 style="text-align:center;">Painting Exhibit</h2>
     <div class="gallery">
       <div class="gallery-item" onclick="goToScanner('painting1')">
-        <img src="painting1.jpg" alt="Painting 1"><p>Sunset Over Aklan</p>
+        <img src="c:\Users\ACER\Downloads\painting of Mr & Mrs Ramos.jpg" alt="Painting 1"><p>Painting of Mr&Mrs Ramos</p>
       </div>
       <div class="gallery-item" onclick="goToScanner('painting2')">
         <img src="painting2.jpg" alt="Painting 2"><p>Festival Dance</p>
@@ -174,11 +175,11 @@
     <div class="back-arrow" onclick="showPage('gallery')">←</div>
     <h2 style="text-align:center;">Artifacts Exhibit</h2>
     <div class="gallery">
-      <div class="gallery-item" onclick="goToScanner('artifact1')">
-        <img src="artifact1.jpg" alt="Artifact 1"><p>Rearing Horse</p>
-      </div>
       <div class="gallery-item" onclick="goToScanner('artifact2')">
-        <img src="artifact2.jpg" alt="Artifact 2"><p>Ancient Vase</p>
+        <img src="c:\Users\ACER\Downloads\jar.jpeg" alt="Artifact 1"><p>Jar</p>
+      </div>
+        <div class="gallery-item" onclick="goToScanner('artifact3')">
+        <img src="c:\Users\ACER\Downloads\talibong.jpeg" alt="Artifact 2"><p>Talibong</p>
       </div>
     </div>
   </div>

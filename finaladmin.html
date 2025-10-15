@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: url('C:/Users/Jane Lyza Agre/Desktop/museofinal-apps/Screenshot 2025-10-15 105508.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    header {
+      background: #b12267;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+    }
+
+    .header-left {
+      width: 40px; /* empty space to help center */
+    }
+
+    .header-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+    }
+
+    .header-center img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .header-center h1 {
+      font-size: 18px;
+      color: white;
+      margin: 0;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .menu-dots {
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      padding: 0 10px;
+    }
+
+    .visitor-btn {
+      position: absolute;
+      top: 40px; /* below header */
+      right: 0;
+      background: #b12267;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+
+      /* Animation */
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+
+    .visitor-btn.show {
+      max-height: 100px; /* enough to fit the button */
+      opacity: 1;
+    }
+
+    /* LOGIN BOX */
+    .login-container {
+      background-color: rgba(177, 34, 103, 0.9);
+      width: 300px;
+      margin: 130px auto;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      color: white;
+    }
+
+    .login-container h2 {
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .login-container label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ddd;
+    }
+
+    .login-container button {
+      background-color: #7d0c47;
+      color: white;
+      border: none;
+      padding: 10px 30px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-container button:hover {
+      background-color: #5b0834;
+    }
+
+    /* ADMIN OPTIONS */
+    .admin-container {
+      display: none;
+      text-align: center;
+      margin-top: 120px;
+    }
+
+    .admin-container h2 {
+      margin-bottom: 30px;
+      color: #fff;
+    }
+
+    .admin-container button {
+      background: #f0f0f0;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      display: block;
+      margin: 10px auto;
+    }
+
+    .admin-container button:hover {
+      background: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-left"></div>
+    <div class="header-center">
+      <img src="provincialofaklan.png" alt="Museo Logo">
+      <h1>Museo It Akean</h1>
+    </div>
+    <div class="header-right">
+      <div class="menu-dots" id="menuDots">⋯</div>
+      <button class="visitor-btn" id="visitorBtn">Visitor</button>
+    </div>
+  </header>
+
+  <!-- LOGIN PAGE -->
+  <div id="loginPage" class="login-container">
+    <h2>Admin Log in</h2>
+    <form id="loginForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password">
+
+      <button type="submit">Log in</button>
+    </form>
+  </div>
+
+  <!-- ADMIN PAGE -->
+  <div id="adminPage" class="admin-container">
+    <h2>Admin Options</h2>
+    <button>Fill up view</button>
+    <button>Users Feedback</button>
+  </div>
+
+  <script>
+    const menuDots = document.getElementById("menuDots");
+    const visitorBtn = document.getElementById("visitorBtn");
+
+    // Toggle Visitor button with animation
+    menuDots.addEventListener("click", () => {
+      visitorBtn.classList.toggle("show");
+    });
+
+    // Go to admin page when Log in button is clicked
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      document.getElementById("loginPage").style.display = "none";
+      document.getElementById("adminPage").style.display = "block";
+    });
+  </script>
+</body>
+</html>
